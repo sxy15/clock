@@ -7,11 +7,14 @@ export default defineConfig({
     lib: {
       entry: resolve(__dirname, 'dist/index.js'),
       name: 'clock',
-      fileName: 'clock'
+      fileName: 'clock',
+      formats: ['es', 'cjs', 'umd']
     },
     emptyOutDir: false,
     rollupOptions: {
-
+      output: {
+        exports: "named"
+      }
     },
   },
 })
