@@ -17,6 +17,7 @@
     "dist",
     "README.md"
   ],
+  "license": "MIT",
   "main": "dist/clock.js",
   "scripts": {
     "dev": "vite",
