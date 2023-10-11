@@ -1,12 +1,21 @@
 {
-  "name": "clock-listen",
+  "name": "clock2listen",
   "private": false,
-  "version": "0.0.2",
+  "version": "0.0.3",
   "type": "module",
   "description": "a clock that listens to the time",
+  "keywords": [
+    "clock",
+    "time",
+    "listen"
+  ],
+  "repository": {
+    "url": "https://github.com/sxy15/clock"
+  },
   "types": "dist/index.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "README.md"
   ],
   "main": "dist/clock.js",
   "scripts": {
