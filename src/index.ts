@@ -66,7 +66,9 @@ class ClockTimer {
   }
 
   addListen(listen: () => void) {
-    this.listen.push({id: createId(), listen})
+    const id = createId()
+    this.listen.push({id, listen})
+    return id
   }
 
   cancelListen(id: string) {

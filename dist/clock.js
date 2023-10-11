@@ -1,11 +1,11 @@
 var a = Object.defineProperty;
-var l = (e, i, t) => i in e ? a(e, i, { enumerable: !0, configurable: !0, writable: !0, value: t }) : e[i] = t;
-var c = (e, i, t) => (l(e, typeof i != "symbol" ? i + "" : i, t), t);
+var l = (e, t, i) => t in e ? a(e, t, { enumerable: !0, configurable: !0, writable: !0, value: i }) : e[t] = i;
+var c = (e, t, i) => (l(e, typeof t != "symbol" ? t + "" : t, i), i);
 const m = window.cancelAnimationFrame || window.clearTimeout;
 let o = Date.now();
 function u(e) {
-  const i = Date.now(), t = Math.max(0, 16 - (i - o)), n = setTimeout(e, t);
-  return o = i + t, n;
+  const t = Date.now(), i = Math.max(0, 16 - (t - o)), n = setTimeout(e, i);
+  return o = t + i, n;
 }
 const h = window.requestAnimationFrame || u;
 function d(e) {
@@ -14,14 +14,14 @@ function d(e) {
 function f(e) {
   m.call(window, e);
 }
-function T(e, i) {
-  return Math.floor(e / 1e3) === Math.floor(i / 1e3);
+function T(e, t) {
+  return Math.floor(e / 1e3) === Math.floor(t / 1e3);
 }
 function r() {
   return `${Date.now()}-${Math.random().toString().slice(2, 8)}`;
 }
 class k {
-  constructor(i) {
+  constructor(t) {
     c(this, "immutableTime");
     // 初始化服务器时间 毫秒
     c(this, "immutableLocalTime");
@@ -33,36 +33,37 @@ class k {
     c(this, "rafId");
     c(this, "listen");
     c(this, "clocks");
-    this.immutableTime = i, this.currentServeTime = i, this.immutableLocalTime = Date.now(), this.runTime = 0, this.rafId = 0, this.listen = [], this.clocks = [], this.tick();
+    this.immutableTime = t, this.currentServeTime = t, this.immutableLocalTime = Date.now(), this.runTime = 0, this.rafId = 0, this.listen = [], this.clocks = [], this.tick();
   }
   get _clocks() {
-    return this.clocks.filter(({ done: i }) => !i);
+    return this.clocks.filter(({ done: t }) => !t);
   }
-  addClock(i) {
-    const t = i.id ?? r();
-    return this.clocks.push({ ...i, id: t }), t;
+  addClock(t) {
+    const i = t.id ?? r();
+    return this.clocks.push({ ...t, id: i }), i;
   }
-  cancelClock(i) {
-    const t = this.clocks.findIndex((n) => n.id === i);
-    t !== -1 && this.clocks.splice(t, 1);
+  cancelClock(t) {
+    const i = this.clocks.findIndex((n) => n.id === t);
+    i !== -1 && this.clocks.splice(i, 1);
   }
-  addListen(i) {
-    this.listen.push({ id: r(), listen: i });
+  addListen(t) {
+    const i = r();
+    return this.listen.push({ id: i, listen: t }), i;
   }
-  cancelListen(i) {
-    const t = this.listen.findIndex((n) => n.id === i);
-    t !== -1 && this.listen.splice(t, 1);
+  cancelListen(t) {
+    const i = this.listen.findIndex((n) => n.id === t);
+    i !== -1 && this.listen.splice(i, 1);
   }
   tick() {
     this.rafId = d(() => {
-      var t;
-      const i = this.getRunTime();
-      if (!T(i, this.runTime)) {
-        this.runTime = i, this.currentServeTime = this.immutableTime + i;
+      var i;
+      const t = this.getRunTime();
+      if (!T(t, this.runTime)) {
+        this.runTime = t, this.currentServeTime = this.immutableTime + t;
         const n = this._clocks;
         if (n.length)
           for (const s of n)
-            s.time <= this.currentServeTime && !s.done && (s.done = !0, (t = s.listen) == null || t.call(s));
+            s.time <= this.currentServeTime && !s.done && (s.done = !0, (i = s.listen) == null || i.call(s));
         this.listen.forEach(({ listen: s }) => {
           s();
         });

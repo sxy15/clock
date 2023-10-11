@@ -53,7 +53,9 @@ class ClockTimer {
         }
     }
     addListen(listen) {
-        this.listen.push({ id: createId(), listen });
+        const id = createId();
+        this.listen.push({ id, listen });
+        return id;
     }
     cancelListen(id) {
         const index = this.listen.findIndex(listen => listen.id === id);

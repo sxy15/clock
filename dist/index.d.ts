@@ -31,7 +31,7 @@ declare class ClockTimer {
         id?: string;
     }): string;
     cancelClock(id: string): void;
-    addListen(listen: () => void): void;
+    addListen(listen: () => void): string;
     cancelListen(id: string): void;
     tick(): void;
     getRunTime(): number;
