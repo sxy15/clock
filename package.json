@@ -1,7 +1,7 @@
 {
   "name": "clock2listen",
   "private": false,
-  "version": "0.0.5",
+  "version": "0.0.6",
   "type": "module",
   "description": "a clock that listens to the time",
   "keywords": [
@@ -11,6 +11,9 @@
   ],
   "repository": {
     "url": "https://github.com/sxy15/clock"
+  },
+  "bugs": {
+    "url": "https://github.com/sxy15/clock/issues"
   },
   "types": "dist/index.d.ts",
   "files": [
