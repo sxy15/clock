@@ -33,7 +33,7 @@ class ClockTimer {
   runTime: number // 运行的时间 毫秒
   currentServeTime: number // 计算出来的服务器时间 毫秒
   rafId: number
-  listen: Array<{id: string; listen: () => void}>
+  listen: Array<{id: string; listen: (time?: number) => void}>
   clocks: Array<{time: number; listen: () => void; done?: boolean, id?: string}>
 
   constructor(time: number) {
@@ -65,7 +65,7 @@ class ClockTimer {
     }
   }
 
-  addListen(listen: () => void) {
+  addListen(listen: (time?: number) => void) {
     const id = createId()
     this.listen.push({id, listen})
     return id
@@ -94,7 +94,7 @@ class ClockTimer {
           }
         }
         this.listen.forEach(({listen}) => {
-          listen()
+          listen(this.currentServeTime)
         });
       }
 

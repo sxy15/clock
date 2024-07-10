@@ -59,7 +59,7 @@ Cancels a clock task with the specified identifier.
 **Parameters**:
 - `id` (string): The unique identifier of the task to cancel.
 
-## `addListen(listen: () => void): string`
+## `addListen(listen: (time: number) => void): string`
 Adds a listener to be triggered on every second update.
 
 **Parameters**:
