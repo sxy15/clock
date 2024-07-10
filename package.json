@@ -4,6 +4,10 @@
   "version": "0.0.6",
   "type": "module",
   "description": "a clock that listens to the time",
+  "engines": {
+    "node": ">=18.8.0"
+  },
+  "packageManager": "pnpm@8.7.6",
   "keywords": [
     "clock",
     "time",
@@ -24,13 +28,19 @@
   "main": "dist/clock.js",
   "scripts": {
     "dev": "vite",
+    "test": "vitest -c vite.test.config.js",
+    "coverage": "vitest run --coverage  -c vite.test.config.js",
     "build": "tsc && vite build",
     "preview": "vite preview",
     "release": "bumpp"
   },
   "devDependencies": {
+    "@vitest/browser": "^2.0.1",
+    "@vitest/coverage-v8": "^2.0.1",
     "bumpp": "^9.1.0",
+    "jsdom": "^24.1.0",
     "typescript": "^4.9.5",
-    "vite": "^4.2.1"
+    "vite": "^4.2.1",
+    "vitest": "^2.0.1"
   }
 }
