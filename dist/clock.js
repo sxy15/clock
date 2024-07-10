@@ -2,10 +2,10 @@ var a = Object.defineProperty;
 var l = (e, t, i) => t in e ? a(e, t, { enumerable: !0, configurable: !0, writable: !0, value: i }) : e[t] = i;
 var c = (e, t, i) => (l(e, typeof t != "symbol" ? t + "" : t, i), i);
 const m = window.cancelAnimationFrame || window.clearTimeout;
-let o = Date.now();
+let r = Date.now();
 function u(e) {
-  const t = Date.now(), i = Math.max(0, 16 - (t - o)), n = setTimeout(e, i);
-  return o = t + i, n;
+  const t = Date.now(), i = Math.max(0, 16 - (t - r)), n = setTimeout(e, i);
+  return r = t + i, n;
 }
 const h = window.requestAnimationFrame || u;
 function d(e) {
@@ -17,7 +17,7 @@ function f(e) {
 function T(e, t) {
   return Math.floor(e / 1e3) === Math.floor(t / 1e3);
 }
-function r() {
+function o() {
   return `${Date.now()}-${Math.random().toString().slice(2, 8)}`;
 }
 class k {
@@ -39,7 +39,7 @@ class k {
     return this.clocks.filter(({ done: t }) => !t);
   }
   addClock(t) {
-    const i = t.id ?? r();
+    const i = t.id ?? o();
     return this.clocks.push({ ...t, id: i }), i;
   }
   cancelClock(t) {
@@ -47,7 +47,7 @@ class k {
     i !== -1 && this.clocks.splice(i, 1);
   }
   addListen(t) {
-    const i = r();
+    const i = o();
     return this.listen.push({ id: i, listen: t }), i;
   }
   cancelListen(t) {
@@ -65,7 +65,7 @@ class k {
           for (const s of n)
             s.time <= this.currentServeTime && !s.done && (s.done = !0, (i = s.listen) == null || i.call(s));
         this.listen.forEach(({ listen: s }) => {
-          s();
+          s(this.currentServeTime);
         });
       }
       this.tick();
@@ -80,7 +80,7 @@ class k {
 }
 export {
   f as cancelRaf,
-  r as createId,
+  o as createId,
   k as default,
   T as isSameSecond,
   d as raf

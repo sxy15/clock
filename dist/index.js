@@ -79,7 +79,7 @@ class ClockTimer {
                     }
                 }
                 this.listen.forEach(({ listen }) => {
-                    listen();
+                    listen(this.currentServeTime);
                 });
             }
             this.tick();

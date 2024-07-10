@@ -10,7 +10,7 @@ declare class ClockTimer {
     rafId: number;
     listen: Array<{
         id: string;
-        listen: () => void;
+        listen: (time?: number) => void;
     }>;
     clocks: Array<{
         time: number;
@@ -31,7 +31,7 @@ declare class ClockTimer {
         id?: string;
     }): string;
     cancelClock(id: string): void;
-    addListen(listen: () => void): string;
+    addListen(listen: (time?: number) => void): string;
     cancelListen(id: string): void;
     tick(): void;
     getRunTime(): number;
