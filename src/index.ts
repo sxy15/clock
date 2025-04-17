@@ -52,7 +52,12 @@ class ClockTimer {
     return this.clocks.filter(({done}) => !done);
   }
 
-  addClock(clock: {time: number; listen: () => void; id?: string;}): string {
+  addClock(clock: {time: number; listen: () => void; id?: string;}): string | void {
+    if(clock.id) {
+      if(this.clocks.some((c) => c.id === clock.id)) {
+        return
+      }
+    }
     const _id = clock.id ?? createId()
     this.clocks.push({...clock, id: _id});
     return _id

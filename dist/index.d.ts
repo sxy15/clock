@@ -29,7 +29,7 @@ declare class ClockTimer {
         time: number;
         listen: () => void;
         id?: string;
-    }): string;
+    }): string | void;
     cancelClock(id: string): void;
     addListen(listen: (time?: number) => void): string;
     cancelListen(id: string): void;
